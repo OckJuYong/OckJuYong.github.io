@@ -1,0 +1,8 @@
+{
+    "development": {
+        "username": "zerokong",
+        "password": "lmh51878@",
+        "database": "mocom",
+        "host": "zerokongsql1.mysql.database.azure.com"
+    }
+}
