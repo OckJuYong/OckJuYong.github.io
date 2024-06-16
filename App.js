@@ -14,6 +14,14 @@ app.use((req, res, next) => {
   next();
 });
 
+// CORS 설정 미들웨어
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // 모든 도메인에서 접근 허용
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // 허용할 HTTP 메서드 설정
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // 허용할 헤더 설정
+  next();
+});
+
 // GET: 기본 경로에 대한 응답
 app.get('/', (req, res) => {
   res.send('Hello World!');
