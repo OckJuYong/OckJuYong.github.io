@@ -1,15 +1,24 @@
-// db.js
 const mysql = require('mysql2');
+const config = require('./config.json');
 
 const pool = mysql.createPool({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: '1234',
-  database: 'test',
+  host: config.development.host,
+  user: config.development.username,
+  password: config.development.password,
+  database: config.development.database,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
+});
+
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error('데이터베이스 연결 실패: ' + err.stack);
+    return;
+  }
+
+  console.log('데이터베이스 연결 성공. 연결 ID: ' + connection.threadId);
+  connection.release(); // 연결 해제
 });
 
 module.exports = pool.promise();
