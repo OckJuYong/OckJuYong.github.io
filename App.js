@@ -44,7 +44,7 @@ app.get('/users/:id', async (req, res) => {
 
 // POST: 새 사용자 추가
 app.post('/users', async (req, res) => {
-  const { userId, name, price, language, address, schedule, place, tag, goal, time, day } = req.query;
+  const { userId, name, price, language, address, schedule, place, tag, goal, time, day } = req.body;
   try {
     const [result] = await db.query('INSERT INTO users (userId, name, price, language, address, schedule, place, tag, goal, time, day) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
     [userId, name, price, language, address, schedule, place, tag, goal, time, day]);
@@ -83,7 +83,5 @@ app.delete('/users/:id', async (req, res) => {
 });
 
 const server = app.listen(port, '0.0.0.0', () => {
-  const host = server.address().address;
-  const port = server.address().port;
-  console.log(`Server is running at http://${host}:${port}`);
+  console.log(`Server is running at http://0.0.0.0:${port}`);
 });
