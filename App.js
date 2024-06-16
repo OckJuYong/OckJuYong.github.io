@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
+const app = express();
 const bodyParser = require('body-parser');
 const db = require('./db'); // db.js 파일을 임포트
 
-const app = express();
 const port = 3000;
+app.use(cors());
 
 // JSON 파싱 미들웨어
 app.use(bodyParser.json());
