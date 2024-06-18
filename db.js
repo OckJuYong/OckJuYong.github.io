@@ -8,7 +8,11 @@ const pool = mysql.createPool({
   database: config.development.database,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  ssl: {
+    // SSL 인증 무시
+    rejectUnauthorized: false
+  }
 });
 
 pool.getConnection((err, connection) => {
